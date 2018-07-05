@@ -10,7 +10,7 @@ csv_file = open(rf'C:\Users\sharm\Desktop\Pagalworld Latest Updates ({today}).cs
 csv_writer = csv.writer(csv_file)
 csv_writer.writerow(['Sr. No.' , 'Update' , 'Download Link'])
 
-pagalworld = 'https://pagalworld.co'
+url = 'https://pagalworld.co'
 source = requests.get(pagalworld).text
 soup  = BeautifulSoup(source , 'lxml')
 
