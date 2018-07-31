@@ -11,7 +11,6 @@ updates = soup.find( 'div' , class_ = 'onediv')
 
 print('Pagalworld Latest Updates:\n')
 x = 1
-n = 0
 serials = []
 links1 = []
 download_links = []
@@ -50,10 +49,6 @@ for s in serials:
     sublink = soup1.find( 'div' , class_ = 'listbox')
     link2 = pagalworld + str(sublink.a['href'])
     #print(link2)
-        
-    
-        
-        
 
     source2 = requests.get(str(link2)).text
     soup2 = BeautifulSoup( source2 , 'lxml')
