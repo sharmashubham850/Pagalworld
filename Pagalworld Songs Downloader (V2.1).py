@@ -17,6 +17,8 @@ links2 = []
 final_links2 = []
 download_links = []
 
+#========================================== Songs List =======================================
+
 for content in updates.find_all('li' , class_ = 'tnned'):
     item = content.h3.a.text
     details = content.p.text
@@ -25,9 +27,10 @@ for content in updates.find_all('li' , class_ = 'tnned'):
     
 for content in updates.find_all('li' , class_ = 'tnned'):
     link1 = content.find( 'a' , class_ = 'taga')['href']
-    links1.append(link1)
-    
+    links1.append(link1)   
 #print(links1)
+
+#========================================== First Promot ======================================
 
 print('\nEnter the serial no. of the item(s) you want to download ( 0 to exit ) :')
 
@@ -41,6 +44,7 @@ for i in range(len(links1)):
         break
     serials.append(serial)
 
+#========================================== Second Page =======================================
         
 for s in serials:
     url_1 = requests.get(links1[s-1]).text
@@ -59,6 +63,8 @@ for s in serials:
         #print(link2)
         links2.append(link2)
         names.append(name)
+
+#========================================= Second Promot (Optional) =============================
         
     if len(links2) > 1:
         print(f'\n{title}:\n')
@@ -70,11 +76,19 @@ for s in serials:
         
         for i in range(len(links2)):
             promot = int(input())
+            
             if promot == 0:
                 break
-            promots.append(promot)
+            
+            elif promot <= len(links2):
+                promots.append(promot)
+                
+            else:
+                print('Please enter the correct serial no.')
+                
         
         for j in promots:
+            
             final_link2 = links2[j-1]
             final_links2.append(final_link2)
             
@@ -84,11 +98,12 @@ for s in serials:
     else:
         alt_link = soup1.find( 'div' , class_ = 'downloaddiv').a['href']
         download_links.append(alt_link)
-
 #print(final_links2)
 
 print('\nThank You ! Your downloads shall start soon :)')
-            
+
+#=========================================== Download Page ====================================
+
 for link in final_links2:
     url_2 = requests.get(str(link)).text
     soup2 = BeautifulSoup( url_2 , 'lxml')
@@ -98,6 +113,8 @@ for link in final_links2:
     #print(download_link)
 
     download_links.append(download_link)
+
+#=========================================== Open Links ========================================
 
 #print(download_links)
 
