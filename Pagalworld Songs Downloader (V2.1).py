@@ -35,14 +35,20 @@ for content in updates.find_all('li' , class_ = 'tnned'):
 print('\nEnter the serial no. of the item(s) you want to download ( 0 to exit ) :')
 
 for i in range(len(links1)):
-    serial = int(input())
-    if serial == 0:
-        if len(serials)>0:
-            pass
+    try:
+        serial = int(input())
+        if serial <= len(links1):
+            if serial == 0:
+                if len(serials)>0:
+                    pass
+                else:
+                    print('Thank you ! See you next time.')
+                break
+            serials.append(serial)
         else:
-            print('Thank you ! See you next time.')
-        break
-    serials.append(serial)
+            print("Please Enter the correct Serial No.")
+    except:
+        print("Please Enter the correct Serial No.")
 
 #========================================== Second Page =======================================
         
